@@ -12,7 +12,10 @@
 <meta property="og:title" content="Tu Refaccionaria · Refacciones para moto con envío a todo México">
 <meta property="og:description" content="Encuentra la refacción exacta para tu moto: busca por marca, modelo, año y cilindrada.">
 <meta property="og:image" content="https://images.unsplash.com/photo-1580341289255-5b47c98a59dd?w=1200&h=630&fit=crop&q=75&auto=format">
+<!-- Demo con contenido de ejemplo: en el sitio real se quita "noindex" para que Google lo indexe -->
+<meta name="robots" content="noindex, follow">
 <meta name="theme-color" content="#0d0d10">
+<!-- anim: padel-port 2026-11-10 -->
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
@@ -202,9 +205,41 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
  .htrack{width:auto;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
  .ty{width:78vw;height:50vh;scroll-snap-align:center}
 }
+
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+/* padel-style motion layer, moto colors */
+.echo-wrap{position:relative;display:block}
+.echo-main{position:relative;z-index:1}
+.echo-ghost{position:absolute;left:0;right:0;top:0;margin:0!important;pointer-events:none;user-select:none;color:var(--red2)}
+.scroll-cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.scroll-cue i{display:block;width:24px;height:38px;border:2px solid var(--yel);border-radius:20px;position:relative}
+.scroll-cue i::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:8px;margin-left:-1.5px;border-radius:2px;background:var(--yel);animation:cue 1.6s infinite}
+@keyframes cue{0%{transform:translateY(0);opacity:1}70%{transform:translateY(14px);opacity:0}100%{opacity:0}}
+header.top{transition:top .45s cubic-bezier(.2,.7,.2,1),background .45s,box-shadow .45s}
+header.top.is-away{top:-280px}
+header.top.is-scrolled{box-shadow:0 10px 30px -18px rgba(0,0,0,.8)}
+.menu a.is-on{color:var(--red2)}
+.dots{background-image:radial-gradient(rgba(229,37,27,.14) 1.4px,transparent 1.6px);background-size:22px 22px}
+.cats,.perks{background-size:22px 22px}
+#progress{position:fixed;left:0;right:0;top:0;height:3px;background:var(--red);transform:scaleX(0);transform-origin:0 50%;z-index:100;pointer-events:none}
+#cursor{position:fixed;left:0;top:0;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--yel);z-index:120;pointer-events:none;mix-blend-mode:difference;transition:width .3s,height .3s,margin .3s;opacity:0}
+#cursor.on{opacity:1}
+#cursor.big{width:54px;height:54px;margin:-27px 0 0 -27px}
+html.has-cursor,html.has-cursor *{cursor:none!important}
+html.has-cursor input,html.has-cursor textarea,html.has-cursor select{cursor:text!important}
+.burst{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--yel);pointer-events:none;z-index:5}
+.p,.ty,.pk div,.chip{transform-style:preserve-3d}
+.sec-motion{position:relative;z-index:10}
+.js .hero-anim,.js [data-load]{opacity:0}
+html.reduced .echo-ghost{display:none}
+html.reduced .scroll-cue,html.reduced #cursor,html.reduced #progress{display:none}
+.drawer,.items{overscroll-behavior:contain}
+@media (max-width:900px){.scroll-cue{display:none}}
 @media (prefers-reduced-motion:reduce){
  *,*::before,*::after{animation:none!important;transition:none!important}
- .js .fade{opacity:1;transform:none}
+ .js .fade,.js .hero-anim,.js [data-load],.js #heroTitle .line>span{opacity:1;transform:none}
+ html.reduced .echo-ghost{display:none}
 }
 </style>
 </head>
@@ -227,12 +262,12 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
 <section class="hero">
  <div class="hero-bg" id="heroBg" role="img" aria-label="Motocicleta deportiva roja (foto ilustrativa)"></div>
  <div>
-  <div class="kick hero-anim">⚙ Envíos a todo México</div>
-  <h1 id="heroTitle"><span class="line"><span>La refacción</span></span><span class="line"><span><em>exacta</em> para</span></span><span class="line"><span>tu moto.</span></span></h1>
-  <p class="hero-anim">Kits de arrastre, baleros, frenos, filtros y más. Elige tu moto y te mostramos solo lo que le queda.</p>
-  <div class="trust hero-anim"><span>Compatibilidad garantizada</span><span>Pago seguro</span><span>Guía de rastreo</span></div>
+  <div class="kick hero-anim" data-load>⚙ Envíos a todo México</div>
+  <h1 id="heroTitle" data-echo><span class="line"><span>La refacción</span></span><span class="line"><span><em>exacta</em> para</span></span><span class="line"><span>tu moto.</span></span></h1>
+  <p class="hero-anim" data-load>Kits de arrastre, baleros, frenos, filtros y más. Elige tu moto y te mostramos solo lo que le queda.</p>
+  <div class="trust hero-anim" data-load><span>Compatibilidad garantizada</span><span>Pago seguro</span><span>Guía de rastreo</span></div>
  </div>
- <form class="finder hero-anim" id="finder" aria-label="Buscador por motocicleta">
+ <form class="finder hero-anim" id="finder" data-load aria-label="Buscador por motocicleta">
   <h2>Busca por tu moto</h2>
   <p class="s">Marca, modelo, año y cilindrada.</p>
   <div class="fgrid">
@@ -244,16 +279,17 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
   <button class="btn btn-red" type="submit">Ver refacciones compatibles →</button>
   <div class="myMoto" id="myMoto">Prueba: Italika · FT150 · 2022 · 150 cc</div>
  </form>
+ <div class="scroll-cue" data-load><i></i>Desliza</div>
 </section>
 
-<section class="cats" id="categorias">
+<section class="cats dots sec-motion" id="categorias">
  <div class="wrap">
-  <div class="head"><div><div class="label fade">Categorías</div><h2 class="h2 fade">Compra por categoría</h2></div><p class="sub fade">Las 14 categorías iniciales del proyecto, con subcategorías y filtro por marca de refacción.</p></div>
+  <div class="head"><div><div class="label fade">Categorías</div><h2 class="h2 fade" data-echo>Compra por categoría</h2></div><p class="sub fade">Las 14 categorías iniciales del proyecto, con subcategorías y filtro por marca de refacción.</p></div>
   <div class="chips" id="chips"></div>
  </div>
 </section>
 
-<section class="shop" id="tienda">
+<section class="shop sec-motion" id="tienda">
  <div class="wrap">
   <div class="head"><div><div class="label">Tienda</div><h2 class="h2" id="shopTitle">Productos destacados</h2></div></div>
   <div class="status" id="status"></div>
@@ -266,7 +302,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
  <div class="deal-bg" id="dealBg"></div>
  <div class="deal-in">
   <div class="big" id="dealBig">-15%</div>
-  <h2>En kits de arrastre</h2>
+  <h2 data-echo>En kits de arrastre</h2>
   <div class="code">MOTO15</div><br>
   <a class="btn btn-red" href="#tienda" data-cat="kits">Ver kits de arrastre →</a>
   <small>Cupón de ejemplo: pruébalo en el carrito.</small>
@@ -276,7 +312,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
 <div class="brands" aria-hidden="true"><div class="tk"><span>Italika</span><span>Honda</span><span>Yamaha</span><span>Suzuki</span><span>Bajaj</span><span>Vento</span><span>KTM</span><span>Kawasaki</span><span>Italika</span><span>Honda</span><span>Yamaha</span><span>Suzuki</span><span>Bajaj</span><span>Vento</span><span>KTM</span><span>Kawasaki</span></div></div>
 
 <section class="types" id="tipos">
- <div class="t-head"><div class="label">Por tipo de moto</div><h2 class="h2">¿Qué manejas?</h2></div>
+ <div class="t-head"><div class="label">Por tipo de moto</div><h2 class="h2" data-echo>¿Qué manejas?</h2></div>
  <div class="htrack" id="htrack">
   <a class="ty" href="#tienda"><img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=900&q=70&auto=format" alt="" loading="lazy"><div><h3>Trabajo</h3><p>Refacciones para motos de reparto y uso diario.</p><small>Foto ilustrativa</small></div></a>
   <a class="ty" href="#tienda"><img src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=900&q=70&auto=format" alt="" loading="lazy"><div><h3>Deportiva</h3><p>Frenos, cadenas y filtros de alto desempeño.</p><small>Foto ilustrativa</small></div></a>
@@ -286,9 +322,9 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
  </div>
 </section>
 
-<section class="perks" id="ayuda">
+<section class="perks dots sec-motion" id="ayuda">
  <div class="wrap">
-  <div class="head"><div><div class="label fade">Envíos y pagos</div><h2 class="h2 fade">Compra fácil, llega rápido</h2></div><p class="sub fade">Pagos y paqueterías integrados en Shopify: confirmación automática, guías y rastreo.</p></div>
+  <div class="head"><div><div class="label fade">Envíos y pagos</div><h2 class="h2 fade" data-echo>Compra fácil, llega rápido</h2></div><p class="sub fade">Pagos y paqueterías integrados en Shopify: confirmación automática, guías y rastreo.</p></div>
   <div class="pk">
    <div class="fade"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><b>Envíos a todo México</b><p>Cotización al momento, guía automática y número de rastreo por correo.</p></div>
    <div class="fade"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg><b>Pago seguro</b><p>Tarjeta de crédito y débito, transferencia, Mercado Pago y pago en efectivo.</p></div>
@@ -299,9 +335,9 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
  </div>
 </section>
 
-<section class="faq" id="faq">
+<section class="faq sec-motion" id="faq">
  <div class="wrap faq-grid">
-  <div><div class="label fade">Ayuda</div><h2 class="h2 fade">Preguntas frecuentes</h2><p class="sub fade" style="margin-top:14px">Más páginas de la tienda: Nosotros, Contacto, Políticas de envío, Devoluciones y Aviso de privacidad.</p></div>
+  <div><div class="label fade">Ayuda</div><h2 class="h2 fade" data-echo>Preguntas frecuentes</h2><p class="sub fade" style="margin-top:14px">Más páginas de la tienda: Nosotros, Contacto, Políticas de envío, Devoluciones y Aviso de privacidad.</p></div>
   <div class="fade">
    <details open><summary>¿Cómo sé si una pieza le queda a mi moto?</summary><p>Usa el buscador por moto: elige marca, modelo, año y cilindrada y solo verás piezas compatibles. También puedes buscar por número de parte.</p></details>
    <details><summary>¿Cuánto tarda mi envío?</summary><p>De 2 a 5 días hábiles según tu ciudad (ejemplo). Recibes tu guía de rastreo por correo.</p></details>
@@ -311,7 +347,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
  </div>
 </section>
 
-<footer>
+<footer class="sec-motion">
  <div class="fcols">
   <div><a class="logo" href="#top" style="color:#fff"><i>R</i><span>TU REFACCIONARIA<small>Refacciones para moto</small></span></a><p style="margin-top:14px;max-width:320px">Refacciones, accesorios y componentes para motocicleta con envío a todo México.</p></div>
   <div><h4>Tienda</h4><ul><li><a href="#categorias">Categorías</a></li><li><a href="#ofertas">Ofertas</a></li><li><a href="#tipos">Por tipo de moto</a></li></ul></div>
@@ -322,7 +358,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
 </footer>
 
 <div class="scrim" id="scrim"></div>
-<aside class="drawer" id="drawer" aria-label="Carrito" aria-hidden="true">
+<aside class="drawer" id="drawer" data-lenis-prevent aria-label="Carrito" aria-hidden="true">
  <div class="dh"><h3>Tu carrito</h3><button id="closeCart" aria-label="Cerrar carrito">×</button></div>
  <div class="ship" id="ship"></div>
  <div class="items" id="items"></div>
@@ -450,38 +486,163 @@ footer a{text-decoration:none}footer a:hover{color:var(--text)}
   var left=FREE-(sub-disc);document.getElementById('ship').innerHTML=(left>0?'Te faltan <b>'+money(left)+'</b> para envío gratis':'<b>¡Tienes envío gratis!</b>')+'<div class="pb"><i style="width:'+Math.min(100,(sub-disc)/FREE*100)+'%"></i></div>';
   var c=document.getElementById('count');c.textContent=n;if(G&&n)gsap.fromTo(c,{scale:1.6},{scale:1,duration:.5,ease:'back.out(3)'});
  }
- grid.addEventListener('click',function(e){var b=e.target.closest('.add');if(!b||b.disabled)return;cart[b.dataset.id]=(cart[b.dataset.id]||0)+1;drawCart();toast('Agregado al carrito ✓')});
+ grid.addEventListener('click',function(e){var b=e.target.closest('.add');if(!b||b.disabled)return;cart[b.dataset.id]=(cart[b.dataset.id]||0)+1;drawCart();toast('Agregado al carrito ✓');if(window.FX&&FX.burst)FX.burst(b);if(window.FX&&FX.pop)FX.pop(b)});
  document.getElementById('items').addEventListener('click',function(e){var i=e.target.dataset.i,d=e.target.dataset.d;if(i)cart[i]++;if(d){cart[d]--;if(!cart[d])delete cart[d]}drawCart()});
- document.getElementById('cpnBtn').onclick=function(){coupon=document.getElementById('cpn').value.trim().toUpperCase()==='MOTO15';toast(coupon?'Cupón MOTO15 aplicado a kits de arrastre':'Cupón no válido');drawCart()};
+ document.getElementById('cpnBtn').onclick=function(){var inp=document.getElementById('cpn');coupon=inp.value.trim().toUpperCase()==='MOTO15';toast(coupon?'Cupón MOTO15 aplicado a kits de arrastre':'Cupón no válido');drawCart();if(coupon&&window.FX&&FX.burst)FX.burst(inp);if(!coupon&&window.FX&&FX.shake)FX.shake(inp)};
  document.getElementById('checkout').onclick=function(){toast('Demo: aquí iría el checkout de Shopify')};
  document.querySelectorAll('.wa-link').forEach(function(a){a.href='https://wa.me/?text='+encodeURIComponent('Hola, busco una refacción para mi moto.');a.target='_blank';a.rel='noopener'});
- /* ---------- SCROLL / ANIM ---------- */
+
+ /* ---------- SCROLL / ANIM (port of Padel by Champions motion) ---------- */
  var lenis=null;
- function go(sel){var t=document.querySelector(sel);if(!t)return;if(lenis)lenis.scrollTo(t,{offset:-120});else t.scrollIntoView({behavior:reduce?'auto':'smooth'})}
+ window.FX={pop:function(){},shake:function(){},burst:function(){}};
+ function go(sel){var t=document.querySelector(sel);if(!t)return;if(lenis)lenis.scrollTo(t,{offset:-120,duration:1.4});else t.scrollIntoView({behavior:reduce?'auto':'smooth'})}
  drawCart();render();
- if(reduce||!window.gsap||!window.ScrollTrigger)return;
- document.documentElement.classList.add('js');
+ if(!window.gsap||!window.ScrollTrigger)return;
  gsap.registerPlugin(ScrollTrigger);
- if(window.Lenis){lenis=new Lenis({lerp:.1,smoothWheel:true});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(function(t){lenis.raf(t*1000)});gsap.ticker.lagSmoothing(0);
-  document.querySelectorAll('a[href^="#"]:not(.wa-link):not([data-cat])').forEach(function(a){a.addEventListener('click',function(e){var h=a.getAttribute('href');if(h.length>1&&document.querySelector(h)){e.preventDefault();go(h)}})})}
- gsap.from('#heroTitle .line>span',{yPercent:110,duration:1.1,ease:'power4.out',stagger:.1,delay:.15});
- gsap.from('.hero-anim',{y:30,opacity:0,duration:1,ease:'power3.out',stagger:.12,delay:.5});
- gsap.fromTo('#heroBg',{scale:1.2},{scale:1.04,duration:2.6,ease:'power2.out'});
+ if(reduce){document.documentElement.classList.add('reduced');return}
+ document.documentElement.classList.add('js');
+ if(window.Lenis){lenis=new Lenis({lerp:.09,smoothWheel:true});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(function(t){lenis.raf(t*1000)});gsap.ticker.lagSmoothing(0)}
+ document.querySelectorAll('a[href^="#"]:not(.wa-link):not([data-cat])').forEach(function(a){a.addEventListener('click',function(e){var h=a.getAttribute('href');if(h.length>1&&document.querySelector(h)){e.preventDefault();go(h)}})});
+
+ var vh=function(n){return function(){return innerHeight*n/100}};
+ var topNav=document.getElementById('top'),lastY=0;
+ ScrollTrigger.create({start:0,end:'max',onUpdate:function(self){var y=self.scroll();topNav.classList.toggle('is-scrolled',y>40);topNav.classList.toggle('is-away',y>innerHeight*.9&&y>lastY&&!document.body.classList.contains('open'));lastY=y}});
+
+ /* echo headlines: 3 trailing copies that lag on scroll */
+ var OPS=[.5,.28,.12];
+ function makeEcho(el){
+  var wrap=document.createElement('div');wrap.className='echo-wrap';
+  el.parentNode.insertBefore(wrap,el);wrap.appendChild(el);el.classList.add('echo-main');
+  var layers=[el];
+  OPS.forEach(function(op){var g=el.cloneNode(true);g.removeAttribute('data-echo');g.removeAttribute('id');g.classList.remove('echo-main','fade');g.classList.add('echo-ghost');g.setAttribute('aria-hidden','true');g.style.opacity=op;wrap.insertBefore(g,el);layers.push(g)});
+  return layers;
+ }
+ var echoes=new Map();
+ document.querySelectorAll('[data-echo]').forEach(function(el){echoes.set(el,makeEcho(el))});
+ function echoRise(main,opts){
+  opts=opts||{};var layers=echoes.get(main);if(!layers)return;
+  var from=opts.from!=null?opts.from:180,start=opts.start||'top 98%',end=opts.end||'top 45%',trig=opts.trigger;
+  layers.forEach(function(l,i){gsap.fromTo(l,{y:from},{y:0,ease:'none',scrollTrigger:{trigger:trig||main.parentNode,start:start,end:end,scrub:.25+i*.55}})});
+ }
+
+ /* HERO intro */
+ gsap.set('.hero h1 .line>span',{y:0,yPercent:115});
+ gsap.set('[data-load],.hero-anim',{y:24,autoAlpha:0});
+ gsap.set('.bar > *,.menu',{y:-24,autoAlpha:0});
+ var intro=gsap.timeline({delay:.15,defaults:{ease:'expo.out'}});
+ intro.fromTo('#heroBg',{scale:1.28,autoAlpha:.7},{scale:1.04,autoAlpha:1,duration:2.4,ease:'power2.out'},0)
+  .to('.bar > *,.menu',{y:0,autoAlpha:1,duration:1,stagger:.06},.15)
+  .to('.hero h1 .line>span',{y:0,yPercent:0,duration:1.3,stagger:.06,ease:'expo.out'},.4)
+  .to('.kick,.hero p,.trust,.finder,.scroll-cue',{y:0,autoAlpha:1,duration:1,stagger:.1},.7);
  gsap.to('#heroBg',{yPercent:14,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
- gsap.utils.toArray('.fade').forEach(function(el){gsap.to(el,{opacity:1,y:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 90%'}})});
- gsap.from('.chip',{opacity:0,y:40,scale:.9,duration:.7,stagger:.04,ease:'power3.out',scrollTrigger:{trigger:'#chips',start:'top 85%'}});
+ gsap.to('.scroll-cue',{y:8,duration:1.2,yoyo:true,repeat:-1,ease:'sine.inOut'});
+ gsap.to('.logo i',{rotate:-4,y:-2,duration:2.2,yoyo:true,repeat:-1,ease:'sine.inOut'});
+ (echoes.get(document.getElementById('heroTitle'))||[]).forEach(function(l,i){
+  gsap.fromTo(l,{y:0},{y:vh(-40),ease:'none',immediateRender:false,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:.25+i*.55,invalidateOnRefresh:true}});
+ });
+ gsap.fromTo(['.kick','.hero p','.trust'],{autoAlpha:1,y:0},{autoAlpha:0,y:-50,ease:'none',immediateRender:false,scrollTrigger:{trigger:'.hero',start:'top top',end:'35% top',scrub:true}});
+ 
+ gsap.fromTo('.scroll-cue',{autoAlpha:1},{autoAlpha:0,ease:'none',immediateRender:false,scrollTrigger:{trigger:'.hero',start:'5% top',end:'30% top',scrub:true}});
+
+ echoRise(document.querySelector('#categorias [data-echo]'),{trigger:'#categorias .head',start:'top 95%',end:'top 40%'});
+  echoRise(document.querySelector('#ofertas [data-echo]'),{trigger:'.deal-in',start:'top 90%',end:'top 30%'});
+ echoRise(document.querySelector('#tipos [data-echo]'),{trigger:'.t-head',start:'top 95%',end:'top 40%'});
+ echoRise(document.querySelector('#ayuda [data-echo]'),{trigger:'#ayuda .head',start:'top 95%',end:'top 40%'});
+ echoRise(document.querySelector('#faq [data-echo]'),{trigger:'#faq .wrap > div',start:'top 95%',end:'top 40%'});
+
+ gsap.utils.toArray('.fade:not(.echo-main)').forEach(function(el){gsap.fromTo(el,{autoAlpha:0,y:34},{autoAlpha:1,y:0,duration:1,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 90%'}})});
+ gsap.from('.chip',{opacity:0,y:40,scale:.9,duration:.7,stagger:.04,ease:'expo.out',scrollTrigger:{trigger:'#chips',start:'top 85%'}});
+
  var mm=gsap.matchMedia();
  mm.add('(min-width: 901px)',function(){
   var tl=gsap.timeline({scrollTrigger:{trigger:'.deal',start:'top top',end:'+=120%',pin:true,scrub:.8}});
   tl.fromTo('#dealBg',{scale:1.3,rotate:-3},{scale:1,rotate:0,ease:'none'},0).fromTo('#dealBig',{scale:.5,opacity:0,rotate:-8},{scale:1,opacity:1,rotate:0,ease:'power2.out'},0).from('.deal-in > *:not(.big)',{y:40,opacity:0,stagger:.08},.3);
   var track=document.getElementById('htrack');
   var ht=gsap.to(track,{x:function(){return -(track.scrollWidth-innerWidth)},ease:'none',scrollTrigger:{trigger:'.types',start:'top top',end:function(){return '+='+(track.scrollWidth-innerWidth)},pin:true,scrub:.8,invalidateOnRefresh:true}});
-  gsap.utils.toArray('.ty img').forEach(function(img){gsap.fromTo(img,{xPercent:-7},{xPercent:7,ease:'none',scrollTrigger:{trigger:img.parentNode,containerAnimation:ht,start:'left right',end:'right left',scrub:true}})});
+  gsap.utils.toArray('.ty img').forEach(function(img){gsap.fromTo(img,{xPercent:-7,scale:1.3},{xPercent:7,scale:1,ease:'none',scrollTrigger:{trigger:img.parentNode,containerAnimation:ht,start:'left right',end:'right left',scrub:true}})});
  });
  mm.add('(max-width: 900px)',function(){
   gsap.fromTo('#dealBg',{scale:1.3},{scale:1,ease:'none',scrollTrigger:{trigger:'.deal',start:'top bottom',end:'bottom top',scrub:true}});
   gsap.from('#dealBig',{scale:.6,opacity:0,duration:1,ease:'back.out(2)',scrollTrigger:{trigger:'.deal',start:'top 70%'}});
  });
+
+ /* perk cards rise at staggered speeds, like padel cards */
+ gsap.utils.toArray('.pk > div').forEach(function(c,i){
+  gsap.fromTo(c,{y:[80,130,90,160][i]},{y:0,ease:'none',scrollTrigger:{trigger:'.pk',start:'top bottom',end:'top 50%',scrub:true}});
+ });
+ gsap.utils.toArray('.ty img').forEach(function(im){
+  if(innerWidth<=900)gsap.fromTo(im,{scale:1.25},{scale:1,ease:'none',scrollTrigger:{trigger:im,start:'top bottom',end:'bottom 40%',scrub:true}});
+ });
+
+ /* dotted texture drifts */
+ gsap.utils.toArray('.dots').forEach(function(d){gsap.to(d,{backgroundPosition:'0px -220px',ease:'none',scrollTrigger:{trigger:d,start:'top bottom',end:'bottom top',scrub:true}})});
+
+ /* sections slide over the previous one: rounded inset edges open up */
+ gsap.utils.toArray('.sec-motion').forEach(function(sec){
+  gsap.fromTo(sec,{clipPath:'inset(5% 3% 0% 3% round 36px)'},{clipPath:'inset(0% 0% 0% 0% round 0px)',ease:'none',scrollTrigger:{trigger:sec,start:'top bottom',end:'top 15%',scrub:true}});
+ });
+
+ /* batch reveals */
+ var batchUp=function(sel,vars){vars=vars||{};ScrollTrigger.batch(sel,{start:'top 92%',once:true,onEnter:function(els){gsap.fromTo(els,{y:vars.y!=null?vars.y:34,autoAlpha:0,scale:vars.scale!=null?vars.scale:1,rotate:vars.rotate||0},{y:0,autoAlpha:1,scale:1,rotate:0,duration:vars.d||.9,stagger:vars.st||.06,ease:vars.ease||'expo.out',overwrite:true})}})};
+ batchUp('.pk svg',{scale:0,rotate:-90,ease:'back.out(2.4)'});
+ batchUp('.pays span',{y:20,scale:.85,st:.04,ease:'back.out(2)',d:.6});
+ batchUp('details',{y:28,st:.08});
+ batchUp('footer .fcols > div',{y:40,st:.08,d:1});
+ batchUp('footer .disclaimer',{y:16});
+
+ /* scroll progress line */
+ var prog=document.createElement('div');prog.id='progress';document.body.appendChild(prog);
+ gsap.to(prog,{scaleX:1,ease:'none',scrollTrigger:{start:0,end:'max',scrub:.3}});
+
+ /* active menu pill follows the section in view */
+ document.querySelectorAll('.menu a[href^="#"]').forEach(function(p){var t=document.querySelector(p.getAttribute('href'));if(!t)return;
+  ScrollTrigger.create({trigger:t,start:'top 50%',end:'bottom 50%',onToggle:function(self){p.classList.toggle('is-on',self.isActive)}})});
+
+ /* interaction FX */
+ FX.pop=function(el){gsap.fromTo(el,{scale:.82},{scale:1,duration:.5,ease:'back.out(3)'})};
+ FX.shake=function(el){gsap.fromTo(el,{x:-12},{x:0,duration:.6,ease:'elastic.out(1.2,.25)'})};
+ FX.burst=function(el){
+  var r=el.getBoundingClientRect();
+  for(var i=0;i<12;i++){
+   (function(){
+    var d=document.createElement('i');d.className='burst';d.style.background=i%2?'var(--yel)':'var(--red)';d.style.position='fixed';d.style.left=(r.left+r.width/2)+'px';d.style.top=(r.top+r.height/2)+'px';
+    document.body.appendChild(d);
+    gsap.to(d,{x:(Math.random()*2-1)*90,y:(Math.random()*2-1)*90,scale:0,autoAlpha:0,duration:.7+Math.random()*.4,ease:'power3.out',onComplete:function(){if(d.parentNode)d.parentNode.removeChild(d)}});
+   })();
+  }
+ };
+
+ /* magnetic buttons + 3D-tilting photos/cards (mouse only) */
+ mm.add('(hover:hover) and (pointer:fine)',function(){
+  document.documentElement.classList.add('has-cursor');
+  var cur=document.createElement('div');cur.id='cursor';document.body.appendChild(cur);
+  var cx=gsap.quickTo(cur,'left',{duration:.25,ease:'power3'}),cy=gsap.quickTo(cur,'top',{duration:.25,ease:'power3'});
+  addEventListener('pointermove',function(e){cx(e.clientX);cy(e.clientY);cur.classList.add('on')});
+  addEventListener('pointerleave',function(){cur.classList.remove('on')});
+  var grow='.btn,.chip,.add,.ib,.ty,.p,.logo,.fab';
+  document.addEventListener('pointerover',function(e){if(e.target.closest(grow))cur.classList.add('big')});
+  document.addEventListener('pointerout',function(e){if(e.target.closest(grow)&&(!e.relatedTarget||!e.relatedTarget.closest||!e.relatedTarget.closest(grow)))cur.classList.remove('big')});
+  function magnetize(b){
+   if(b.dataset.mag)return;b.dataset.mag='1';
+   var mx=gsap.quickTo(b,'x',{duration:.4,ease:'power3'}),my=gsap.quickTo(b,'y',{duration:.4,ease:'power3'});
+   b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();mx((e.clientX-r.left-r.width/2)*.25);my((e.clientY-r.top-r.height/2)*.35)});
+   b.addEventListener('pointerleave',function(){mx(0);my(0)});
+  }
+  document.querySelectorAll('.btn,.chip,.ib,.fab').forEach(magnetize);
+  function tilt(host){
+   if(host.dataset.tilt)return;host.dataset.tilt='1';
+   gsap.set(host,{transformPerspective:800});
+   var target=host.querySelector('img')||host;
+   var rx=gsap.quickTo(target,'rotationX',{duration:.5,ease:'power3'}),ry=gsap.quickTo(target,'rotationY',{duration:.5,ease:'power3'});
+   host.addEventListener('pointermove',function(e){var r=host.getBoundingClientRect();ry(((e.clientX-r.left)/r.width-.5)*14);rx(-((e.clientY-r.top)/r.height-.5)*14)});
+   host.addEventListener('pointerleave',function(){rx(0);ry(0)});
+  }
+  document.querySelectorAll('.ty').forEach(tilt);
+  var obs=new MutationObserver(function(){document.querySelectorAll('.p').forEach(tilt);document.querySelectorAll('.add,.btn').forEach(magnetize)});
+  obs.observe(document.getElementById('pgrid'),{childList:true});
+  document.querySelectorAll('.p').forEach(tilt);
+ });
+
  addEventListener('load',function(){ScrollTrigger.refresh()});
 })();
 </script>
