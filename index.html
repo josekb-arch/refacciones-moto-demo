@@ -16,6 +16,7 @@
 <meta name="robots" content="noindex, follow">
 <meta name="theme-color" content="#0d0d10">
 <!-- anim: padel-port 2026-11-10 -->
+<!-- anim: ride-road 2026-11-10 -->
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
@@ -223,19 +224,60 @@ header.top.is-scrolled{box-shadow:0 10px 30px -18px rgba(0,0,0,.8)}
 .dots{background-image:radial-gradient(rgba(229,37,27,.14) 1.4px,transparent 1.6px);background-size:22px 22px}
 .cats,.perks{background-size:22px 22px}
 #progress{position:fixed;left:0;right:0;top:0;height:3px;background:var(--red);transform:scaleX(0);transform-origin:0 50%;z-index:100;pointer-events:none}
-#cursor{position:fixed;left:0;top:0;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--yel);z-index:120;pointer-events:none;mix-blend-mode:difference;transition:width .3s,height .3s,margin .3s;opacity:0}
-#cursor.on{opacity:1}
-#cursor.big{width:54px;height:54px;margin:-27px 0 0 -27px}
-html.has-cursor,html.has-cursor *{cursor:none!important}
-html.has-cursor input,html.has-cursor textarea,html.has-cursor select{cursor:text!important}
 .burst{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--yel);pointer-events:none;z-index:5}
 .p,.ty,.pk div,.chip{transform-style:preserve-3d}
 .sec-motion{position:relative;z-index:10}
 .js .hero-anim,.js [data-load]{opacity:0}
 html.reduced .echo-ghost{display:none}
-html.reduced .scroll-cue,html.reduced #cursor,html.reduced #progress{display:none}
+html.reduced .scroll-cue,html.reduced #progress{display:none}
 .drawer,.items{overscroll-behavior:contain}
 @media (max-width:900px){.scroll-cue{display:none}}
+
+/* ---------- scroll-scrubbed road / moto ---------- */
+.ride{position:relative;z-index:8;background:#08080d;color:var(--text)}
+.ride-inner{position:relative;height:100svh;min-height:540px;overflow:hidden}
+.ride-sky{position:absolute;inset:0;background:linear-gradient(180deg,#07070c 0%,#12101a 38%,#2a1518 68%,#6a3218 88%,#c45a28 100%)}
+.ride-stars{position:absolute;inset:0 0 38% 0;opacity:.75;background-image:
+  radial-gradient(1px 1px at 8% 18%,#fff 50%,transparent),
+  radial-gradient(1.2px 1.2px at 22% 8%,#fff 50%,transparent),
+  radial-gradient(1px 1px at 36% 22%,#fff 50%,transparent),
+  radial-gradient(1.4px 1.4px at 48% 10%,#fff 50%,transparent),
+  radial-gradient(1px 1px at 62% 16%,#fff 50%,transparent),
+  radial-gradient(1px 1px at 74% 6%,#fff 50%,transparent),
+  radial-gradient(1.2px 1.2px at 86% 20%,#fff 50%,transparent),
+  radial-gradient(1px 1px at 14% 32%,#fff 50%,transparent),
+  radial-gradient(1px 1px at 58% 28%,#fff 50%,transparent),
+  radial-gradient(1.3px 1.3px at 92% 12%,#fff 50%,transparent);pointer-events:none}
+.ride-far{position:absolute;left:-8%;width:120%;bottom:30%;height:36%;z-index:1}
+.ride-far svg{width:100%;height:100%;display:block}
+.ride-mid{position:absolute;left:0;bottom:28%;width:320%;height:32%;z-index:2;display:flex;align-items:flex-end;gap:8vw;padding:0 4vw;will-change:transform}
+.ride-mid svg{display:block;flex:none;max-height:90px;width:auto}
+.ride-lamps{position:absolute;left:0;bottom:31%;width:320%;height:42%;z-index:3;display:flex;align-items:flex-end;gap:16vw;padding-left:6vw;will-change:transform;pointer-events:none}
+.lamp{position:relative;width:5px;height:72%;background:linear-gradient(#4a4a52,#1a1a1e);border-radius:2px 2px 0 0;flex:none}
+.lamp i{position:absolute;top:-6px;left:50%;width:46px;height:14px;margin-left:-8px;border-radius:0 0 10px 10px;background:#ffc21a;box-shadow:0 10px 28px 8px rgba(255,194,26,.28),0 40px 50px 16px rgba(255,194,26,.08)}
+.ride-road{position:absolute;left:0;right:0;bottom:0;height:34%;z-index:4;background:linear-gradient(180deg,#4a4a52 0%,#242428 10%,#16161a 40%,#101014 100%)}
+.ride-asphalt{position:absolute;left:-5%;width:110%;top:9%;height:42%;background:linear-gradient(180deg,#3a3a42,#1c1c20 40%,#141416);box-shadow:0 -8px 20px rgba(0,0,0,.25) inset;overflow:hidden;transform:perspective(400px) rotateX(12deg);transform-origin:50% 0}
+.ride-dashes{position:absolute;left:0;top:48%;height:7px;width:400%;background:repeating-linear-gradient(90deg,#ffc21a 0 58px,transparent 58px 130px);box-shadow:0 0 10px rgba(255,194,26,.4);will-change:transform}
+.ride-edge{position:absolute;left:0;width:400%;height:3px;background:#e8e8ec;opacity:.85}
+.ride-edge-l{top:10%}.ride-edge-r{bottom:10%}
+.ride-near{position:absolute;left:0;bottom:0;width:320%;height:18%;z-index:6;background:repeating-linear-gradient(90deg,#2a2a30 0 14px,#1a1a1e 14px 18px,#8a8a92 18px 20px,#1a1a1e 20px 70px);opacity:.9;will-change:transform;pointer-events:none}
+.ride-bike{position:absolute;left:6%;bottom:11%;width:min(48vw,640px);z-index:7;will-change:transform;filter:drop-shadow(0 18px 18px rgba(0,0,0,.45))}
+.ride-bike svg{width:100%;height:auto;display:block;overflow:visible}
+.ride-beam{position:absolute;left:78%;top:36%;width:50%;height:30%;background:linear-gradient(90deg,rgba(255,213,106,.5),rgba(255,213,106,.12) 46%,transparent);clip-path:polygon(0 42%,100% 8%,100% 92%,0 58%);filter:blur(2px);pointer-events:none;z-index:0}
+.ride-copy{position:absolute;left:4vw;top:clamp(20px,8vh,70px);z-index:8;max-width:min(520px,90vw)}
+.ride-copy .h2,.ride-copy .echo-main{font-size:clamp(28px,4vw,52px);margin-top:6px;color:var(--text)}
+.ride-copy .echo-ghost{color:var(--red2)}
+.ride-copy p{color:#d8d0c8;max-width:420px;margin-top:10px;font-size:15px}
+html.reduced .ride-bike{left:22%}
+html.reduced .ride-dashes,html.reduced .ride-mid,html.reduced .ride-lamps,html.reduced .ride-near,html.reduced .ride-far{transform:none!important}
+@media (max-width:900px){
+  .ride-inner{min-height:480px}
+  .ride-bike{width:min(78vw,440px);bottom:13%;left:2%}
+  html.reduced .ride-bike{left:8%}
+  .ride-copy{top:16px}
+  .ride-copy p{font-size:13px}
+  .ride-lamps{height:36%}
+}
 @media (prefers-reduced-motion:reduce){
  *,*::before,*::after{animation:none!important;transition:none!important}
  .js .fade,.js .hero-anim,.js [data-load],.js #heroTitle .line>span{opacity:1;transform:none}
@@ -280,6 +322,259 @@ html.reduced .scroll-cue,html.reduced #cursor,html.reduced #progress{display:non
   <div class="myMoto" id="myMoto">Prueba: Italika · FT150 · 2022 · 150 cc</div>
  </form>
  <div class="scroll-cue" data-load><i></i>Desliza</div>
+</section>
+
+<section class="ride" id="ruta" aria-label="Ilustración: una motocicleta recorre una carretera al hacer scroll">
+ <div class="ride-inner">
+  <div class="ride-sky"></div>
+  <div class="ride-stars" aria-hidden="true"></div>
+  <div class="ride-far" aria-hidden="true">
+   <svg viewBox="0 0 1600 200" preserveAspectRatio="none">
+    <path d="M0 200 L0 138 L90 108 L180 128 L280 64 L360 118 L460 86 L560 128 L700 36 L820 118 L960 74 L1080 128 L1220 52 L1360 120 L1500 88 L1600 136 L1600 200Z" fill="#14101a"/>
+    <path d="M0 200 L0 158 L140 138 L280 152 L440 118 L620 148 L800 122 L980 152 L1180 128 L1380 150 L1600 142 L1600 200Z" fill="#1a1620"/>
+   </svg>
+  </div>
+  <div class="ride-mid" id="rideMid" aria-hidden="true"><div><svg viewBox="0 0 80 110" width="70" height="96" fill="#12141a"><path d="M38 110v-70c0-16 12-22 18-22 4 0 8 3 8 9v18c0 4-3 6-6 6-6 0-8-6-8-6v46"/><path d="M38 70c0-14-12-20-18-20-4 0-8 3-8 9v14c0 4 3 6 6 6 6 0 8-6 8-6v37h12"/></svg></div><div><svg viewBox="0 0 120 70" width="110" height="64" fill="#181a20"><path d="M60 70c-4-22-18-50-28-66 16 10 26 30 28 48 2-18 12-38 28-48-10 16-24 44-28 66z"/><path d="M60 70c-14-16-40-28-56-30 18 2 38 14 50 28 8-16 24-36 52-42-22 8-36 26-46 44z" opacity=".85"/></svg></div><div><svg viewBox="0 0 120 130" width="92" height="100"><rect x="54" y="70" width="12" height="60" fill="#2a2a30"/><rect x="8" y="8" width="104" height="66" rx="8" fill="#1b5e2a" stroke="#d8d8d8" stroke-width="3"/><text x="60" y="38" text-anchor="middle" fill="#fff" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700">MÉXICO</text><text x="60" y="58" text-anchor="middle" fill="#ffc21a" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700">ENVÍOS</text></svg></div><div><svg viewBox="0 0 80 110" width="70" height="96" fill="#12141a"><path d="M38 110v-70c0-16 12-22 18-22 4 0 8 3 8 9v18c0 4-3 6-6 6-6 0-8-6-8-6v46"/><path d="M38 70c0-14-12-20-18-20-4 0-8 3-8 9v14c0 4 3 6 6 6 6 0 8-6 8-6v37h12"/></svg></div><div><svg viewBox="0 0 120 70" width="110" height="64" fill="#181a20"><path d="M60 70c-4-22-18-50-28-66 16 10 26 30 28 48 2-18 12-38 28-48-10 16-24 44-28 66z"/><path d="M60 70c-14-16-40-28-56-30 18 2 38 14 50 28 8-16 24-36 52-42-22 8-36 26-46 44z" opacity=".85"/></svg></div><div><svg viewBox="0 0 70 90" width="60" height="78" fill="#14161c"><path d="M32 90V28c0-12 10-18 16-18 4 0 7 3 7 8v14c0 3-2 5-5 5-5 0-7-5-7-5v48"/><path d="M32 50c0-10-8-16-14-16-3 0-7 2-7 7v12c0 3 2 5 5 5 5 0 7-5 7-5v37h9"/></svg></div><div><svg viewBox="0 0 120 70" width="110" height="64" fill="#181a20"><path d="M60 70c-4-22-18-50-28-66 16 10 26 30 28 48 2-18 12-38 28-48-10 16-24 44-28 66z"/><path d="M60 70c-14-16-40-28-56-30 18 2 38 14 50 28 8-16 24-36 52-42-22 8-36 26-46 44z" opacity=".85"/></svg></div><div><svg viewBox="0 0 80 110" width="70" height="96" fill="#12141a"><path d="M38 110v-70c0-16 12-22 18-22 4 0 8 3 8 9v18c0 4-3 6-6 6-6 0-8-6-8-6v46"/><path d="M38 70c0-14-12-20-18-20-4 0-8 3-8 9v14c0 4 3 6 6 6 6 0 8-6 8-6v37h12"/></svg></div><div><svg viewBox="0 0 120 130" width="92" height="100"><rect x="54" y="70" width="12" height="60" fill="#2a2a30"/><rect x="8" y="8" width="104" height="66" rx="8" fill="#1b5e2a" stroke="#d8d8d8" stroke-width="3"/><text x="60" y="38" text-anchor="middle" fill="#fff" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700">MÉXICO</text><text x="60" y="58" text-anchor="middle" fill="#ffc21a" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700">ENVÍOS</text></svg></div><div><svg viewBox="0 0 120 70" width="110" height="64" fill="#181a20"><path d="M60 70c-4-22-18-50-28-66 16 10 26 30 28 48 2-18 12-38 28-48-10 16-24 44-28 66z"/><path d="M60 70c-14-16-40-28-56-30 18 2 38 14 50 28 8-16 24-36 52-42-22 8-36 26-46 44z" opacity=".85"/></svg></div><div><svg viewBox="0 0 80 110" width="70" height="96" fill="#12141a"><path d="M38 110v-70c0-16 12-22 18-22 4 0 8 3 8 9v18c0 4-3 6-6 6-6 0-8-6-8-6v46"/><path d="M38 70c0-14-12-20-18-20-4 0-8 3-8 9v14c0 4 3 6 6 6 6 0 8-6 8-6v37h12"/></svg></div><div><svg viewBox="0 0 120 70" width="110" height="64" fill="#181a20"><path d="M60 70c-4-22-18-50-28-66 16 10 26 30 28 48 2-18 12-38 28-48-10 16-24 44-28 66z"/><path d="M60 70c-14-16-40-28-56-30 18 2 38 14 50 28 8-16 24-36 52-42-22 8-36 26-46 44z" opacity=".85"/></svg></div><div><svg viewBox="0 0 80 110" width="70" height="96" fill="#12141a"><path d="M38 110v-70c0-16 12-22 18-22 4 0 8 3 8 9v18c0 4-3 6-6 6-6 0-8-6-8-6v46"/><path d="M38 70c0-14-12-20-18-20-4 0-8 3-8 9v14c0 4 3 6 6 6 6 0 8-6 8-6v37h12"/></svg></div><div><svg viewBox="0 0 120 70" width="110" height="64" fill="#181a20"><path d="M60 70c-4-22-18-50-28-66 16 10 26 30 28 48 2-18 12-38 28-48-10 16-24 44-28 66z"/><path d="M60 70c-14-16-40-28-56-30 18 2 38 14 50 28 8-16 24-36 52-42-22 8-36 26-46 44z" opacity=".85"/></svg></div><div><svg viewBox="0 0 120 130" width="92" height="100"><rect x="54" y="70" width="12" height="60" fill="#2a2a30"/><rect x="8" y="8" width="104" height="66" rx="8" fill="#1b5e2a" stroke="#d8d8d8" stroke-width="3"/><text x="60" y="38" text-anchor="middle" fill="#fff" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700">MÉXICO</text><text x="60" y="58" text-anchor="middle" fill="#ffc21a" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700">ENVÍOS</text></svg></div><div><svg viewBox="0 0 80 110" width="70" height="96" fill="#12141a"><path d="M38 110v-70c0-16 12-22 18-22 4 0 8 3 8 9v18c0 4-3 6-6 6-6 0-8-6-8-6v46"/><path d="M38 70c0-14-12-20-18-20-4 0-8 3-8 9v14c0 4 3 6 6 6 6 0 8-6 8-6v37h12"/></svg></div><div><svg viewBox="0 0 120 70" width="110" height="64" fill="#181a20"><path d="M60 70c-4-22-18-50-28-66 16 10 26 30 28 48 2-18 12-38 28-48-10 16-24 44-28 66z"/><path d="M60 70c-14-16-40-28-56-30 18 2 38 14 50 28 8-16 24-36 52-42-22 8-36 26-46 44z" opacity=".85"/></svg></div><div><svg viewBox="0 0 70 90" width="60" height="78" fill="#14161c"><path d="M32 90V28c0-12 10-18 16-18 4 0 7 3 7 8v14c0 3-2 5-5 5-5 0-7-5-7-5v48"/><path d="M32 50c0-10-8-16-14-16-3 0-7 2-7 7v12c0 3 2 5 5 5 5 0 7-5 7-5v37h9"/></svg></div><div><svg viewBox="0 0 120 70" width="110" height="64" fill="#181a20"><path d="M60 70c-4-22-18-50-28-66 16 10 26 30 28 48 2-18 12-38 28-48-10 16-24 44-28 66z"/><path d="M60 70c-14-16-40-28-56-30 18 2 38 14 50 28 8-16 24-36 52-42-22 8-36 26-46 44z" opacity=".85"/></svg></div><div><svg viewBox="0 0 80 110" width="70" height="96" fill="#12141a"><path d="M38 110v-70c0-16 12-22 18-22 4 0 8 3 8 9v18c0 4-3 6-6 6-6 0-8-6-8-6v46"/><path d="M38 70c0-14-12-20-18-20-4 0-8 3-8 9v14c0 4 3 6 6 6 6 0 8-6 8-6v37h12"/></svg></div><div><svg viewBox="0 0 120 130" width="92" height="100"><rect x="54" y="70" width="12" height="60" fill="#2a2a30"/><rect x="8" y="8" width="104" height="66" rx="8" fill="#1b5e2a" stroke="#d8d8d8" stroke-width="3"/><text x="60" y="38" text-anchor="middle" fill="#fff" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700">MÉXICO</text><text x="60" y="58" text-anchor="middle" fill="#ffc21a" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700">ENVÍOS</text></svg></div><div><svg viewBox="0 0 120 70" width="110" height="64" fill="#181a20"><path d="M60 70c-4-22-18-50-28-66 16 10 26 30 28 48 2-18 12-38 28-48-10 16-24 44-28 66z"/><path d="M60 70c-14-16-40-28-56-30 18 2 38 14 50 28 8-16 24-36 52-42-22 8-36 26-46 44z" opacity=".85"/></svg></div><div><svg viewBox="0 0 80 110" width="70" height="96" fill="#12141a"><path d="M38 110v-70c0-16 12-22 18-22 4 0 8 3 8 9v18c0 4-3 6-6 6-6 0-8-6-8-6v46"/><path d="M38 70c0-14-12-20-18-20-4 0-8 3-8 9v14c0 4 3 6 6 6 6 0 8-6 8-6v37h12"/></svg></div><div><svg viewBox="0 0 120 70" width="110" height="64" fill="#181a20"><path d="M60 70c-4-22-18-50-28-66 16 10 26 30 28 48 2-18 12-38 28-48-10 16-24 44-28 66z"/><path d="M60 70c-14-16-40-28-56-30 18 2 38 14 50 28 8-16 24-36 52-42-22 8-36 26-46 44z" opacity=".85"/></svg></div></div>
+  <div class="ride-lamps" id="rideLamps" aria-hidden="true"><div class="lamp"><i></i></div><div class="lamp"><i></i></div><div class="lamp"><i></i></div><div class="lamp"><i></i></div><div class="lamp"><i></i></div><div class="lamp"><i></i></div><div class="lamp"><i></i></div><div class="lamp"><i></i></div><div class="lamp"><i></i></div><div class="lamp"><i></i></div><div class="lamp"><i></i></div><div class="lamp"><i></i></div><div class="lamp"><i></i></div><div class="lamp"><i></i></div></div>
+  <div class="ride-road" aria-hidden="true">
+   <div class="ride-asphalt">
+    <div class="ride-edge ride-edge-l"></div>
+    <div class="ride-dashes" id="rideDashes"></div>
+    <div class="ride-edge ride-edge-r"></div>
+   </div>
+   <div class="ride-near" id="rideNear"></div>
+  </div>
+  <div class="ride-bike" id="rideBike">
+   <div class="ride-beam"></div>
+   <svg viewBox="0 0 820 440" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="rb-redBody" x1="200" y1="120" x2="660" y2="320" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff6a5c"/>
+      <stop offset=".35" stop-color="#e5251b"/>
+      <stop offset=".72" stop-color="#b31410"/>
+      <stop offset="1" stop-color="#6e0c0a"/>
+    </linearGradient>
+    <linearGradient id="rb-redDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c41b14"/>
+      <stop offset="1" stop-color="#5a0c0a"/>
+    </linearGradient>
+    <linearGradient id="rb-shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".4"/>
+      <stop offset=".55" stop-color="#fff" stop-opacity=".06"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="rb-metal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#edeff2"/>
+      <stop offset=".45" stop-color="#9aa0a8"/>
+      <stop offset="1" stop-color="#3e4248"/>
+    </linearGradient>
+    <linearGradient id="rb-metalFlat" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8a9098"/>
+      <stop offset="1" stop-color="#1c1e22"/>
+    </linearGradient>
+    <linearGradient id="rb-engineG" x1="300" y1="250" x2="460" y2="360" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6a7078"/>
+      <stop offset=".4" stop-color="#2e3238"/>
+      <stop offset="1" stop-color="#121416"/>
+    </linearGradient>
+    <linearGradient id="rb-seatG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a3a42"/>
+      <stop offset="1" stop-color="#0c0c10"/>
+    </linearGradient>
+    <linearGradient id="rb-suit" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2c2e34"/>
+      <stop offset=".55" stop-color="#14151a"/>
+      <stop offset="1" stop-color="#08080a"/>
+    </linearGradient>
+    <linearGradient id="rb-helmetG" x1="470" y1="60" x2="560" y2="170" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3e424a"/>
+      <stop offset=".4" stop-color="#1a1c20"/>
+      <stop offset="1" stop-color="#08090b"/>
+    </linearGradient>
+    <linearGradient id="rb-visorG" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9ad4ee" stop-opacity=".6"/>
+      <stop offset=".45" stop-color="#1a2a32" stop-opacity=".92"/>
+      <stop offset="1" stop-color="#05070a"/>
+    </linearGradient>
+    <linearGradient id="rb-forkG" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f0f2f5"/>
+      <stop offset=".5" stop-color="#8b9098"/>
+      <stop offset="1" stop-color="#3a3e44"/>
+    </linearGradient>
+    <radialGradient id="rb-hubG" cx="50%" cy="38%" r="62%">
+      <stop offset="0" stop-color="#f4f5f7"/>
+      <stop offset=".4" stop-color="#9aa0a8"/>
+      <stop offset="1" stop-color="#26282c"/>
+    </radialGradient>
+    <radialGradient id="rb-tireG" cx="34%" cy="28%" r="78%">
+      <stop offset="0" stop-color="#3a3a42"/>
+      <stop offset=".5" stop-color="#141418"/>
+      <stop offset="1" stop-color="#050506"/>
+    </radialGradient>
+    <linearGradient id="rb-discG" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d0d4da"/>
+      <stop offset=".5" stop-color="#7a8088"/>
+      <stop offset="1" stop-color="#3a3e44"/>
+    </linearGradient>
+    <filter id="rb-glowRed" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="rb-glowAmber" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <g id="rb-wheelArt">
+      <circle r="73" fill="url(#rb-tireG)"/>
+      <circle r="73" fill="none" stroke="#070708" stroke-width="2.4"/>
+      <circle r="63.5" fill="none" stroke="#2a2a30" stroke-width="5.5"/>
+      <circle r="59.5" fill="none" stroke="#111114" stroke-width="1.1"/>
+      <g stroke="#0a0a0c" stroke-width="1.3" opacity=".65">
+        <path d="M0 -73v6M0 73v-6M73 0h-6M-73 0h6M51.6 -51.6l-4.2 4.2M-51.6 51.6l4.2-4.2M51.6 51.6l-4.2-4.2M-51.6 -51.6l4.2 4.2"/>
+      </g>
+      <circle r="42" fill="url(#rb-discG)"/>
+      <circle r="39" fill="none" stroke="#c4c8ce" stroke-width="1.1"/>
+      <g fill="#1a1c20">
+        <circle r="4" cx="18" cy="0"/><circle r="4" cx="-18" cy="0"/>
+        <circle r="4" cx="0" cy="18"/><circle r="4" cx="0" cy="-18"/>
+        <circle r="4" cx="12.7" cy="12.7"/><circle r="4" cx="-12.7" cy="12.7"/>
+        <circle r="4" cx="12.7" cy="-12.7"/><circle r="4" cx="-12.7" cy="-12.7"/>
+      </g>
+      <circle r="50" fill="none" stroke="#e2e4e8" stroke-width="3"/>
+      <circle r="47" fill="none" stroke="#555960" stroke-width="1"/>
+      <g fill="url(#rb-metal)">
+        <path d="M-6.5 -7.5 L6.5 -7.5 L5 -48.5 L-5 -48.5Z"/>
+        <path d="M-6.5 -7.5 L6.5 -7.5 L5 -48.5 L-5 -48.5Z" transform="rotate(72)"/>
+        <path d="M-6.5 -7.5 L6.5 -7.5 L5 -48.5 L-5 -48.5Z" transform="rotate(144)"/>
+        <path d="M-6.5 -7.5 L6.5 -7.5 L5 -48.5 L-5 -48.5Z" transform="rotate(216)"/>
+        <path d="M-6.5 -7.5 L6.5 -7.5 L5 -48.5 L-5 -48.5Z" transform="rotate(288)"/>
+      </g>
+      <circle r="12.5" fill="url(#rb-hubG)" stroke="#eee" stroke-width="1.5"/>
+      <circle r="4.8" fill="#222" stroke="#bbb" stroke-width="1"/>
+      <circle r="1.5" fill="#f2f2f2"/>
+    </g>
+  </defs>
+
+  <ellipse cx="405" cy="424" rx="300" ry="13" fill="#000" opacity=".48"/>
+
+  <g id="wheelBack" transform="translate(215 355)">
+    <g class="wheel-spin"><use href="#rb-wheelArt"/></g>
+    <g transform="rotate(-30)">
+      <rect x="37" y="-13" width="20" height="26" rx="3.5" fill="#1a1c20" stroke="#666" stroke-width="1"/>
+      <rect x="41" y="-8" width="12" height="16" rx="2" fill="#c41b14"/>
+    </g>
+  </g>
+
+  <path d="M268 300 L292 250" stroke="#2a2c30" stroke-width="7" stroke-linecap="round"/>
+  <path d="M268 300 L292 250" stroke="#9aa0a8" stroke-width="2.2" stroke-linecap="round" opacity=".5"/>
+  <rect x="274" y="262" width="14" height="28" rx="3" fill="#c41b14" transform="rotate(-50 281 276)"/>
+
+  <path d="M215 346 C270 328 315 324 362 322 L364 344 C318 348 270 354 215 360Z" fill="url(#rb-metalFlat)" stroke="#0a0a0c" stroke-width="1.2"/>
+  <path d="M222 348 C270 334 316 330 360 328" stroke="#c0c4ca" stroke-width="1.3" opacity=".4"/>
+
+  <path d="M215 378 C280 384 325 362 360 348" fill="none" stroke="#111" stroke-width="5.5" stroke-linecap="round"/>
+  <path d="M215 378 C280 384 325 362 360 348" fill="none" stroke="#7a7e84" stroke-width="2" stroke-dasharray="3.5 2.8" stroke-linecap="round"/>
+
+  <path d="M430 338 C360 356 300 358 228 336" fill="none" stroke="#1c1e22" stroke-width="11" stroke-linecap="round"/>
+  <path d="M430 338 C360 356 300 358 228 336" fill="none" stroke="#8a9098" stroke-width="4" stroke-linecap="round"/>
+  <rect x="198" y="324" width="44" height="18" rx="8" fill="#2a2c30" stroke="#bbb" stroke-width="1.3" transform="rotate(-18 220 333)"/>
+  <circle cx="204" cy="328" r="6" fill="#0a0a0c" stroke="#888" stroke-width="1"/>
+
+  <g>
+    <path d="M348 286 L458 278 L470 338 L456 368 L350 368 L338 330Z" fill="url(#rb-engineG)" stroke="#0a0a0c" stroke-width="1.3"/>
+    <rect x="358" y="292" width="44" height="56" rx="4" fill="#1e2024" stroke="#5a5e64" stroke-width="1"/>
+    <rect x="408" y="290" width="44" height="56" rx="4" fill="#1e2024" stroke="#5a5e64" stroke-width="1"/>
+    <path d="M362 306h36M362 320h36M362 334h36M412 304h36M412 318h36M412 332h36" stroke="#7a8088" stroke-width="1.15"/>
+    <circle cx="380" cy="346" r="5.5" fill="#3a3e44" stroke="#999" stroke-width=".8"/>
+    <circle cx="430" cy="346" r="5.5" fill="#3a3e44" stroke="#999" stroke-width=".8"/>
+    <circle cx="360" cy="350" r="20" fill="#2a2e32" stroke="#8a9098" stroke-width="1.4"/>
+    <circle cx="360" cy="350" r="10" fill="none" stroke="#555" stroke-width="1.1"/>
+    <circle cx="360" cy="350" r="3" fill="#888"/>
+    <rect x="462" y="300" width="16" height="52" rx="2" fill="#1a1c20" stroke="#555" stroke-width=".8"/>
+    <path d="M465 308h10M465 316h10M465 324h10M465 332h10M465 340h10" stroke="#4a80c8" stroke-width="1" opacity=".7"/>
+  </g>
+
+  <path d="M430 330 C470 324 510 328 548 350 L530 372 C490 360 450 362 420 370 L430 330Z" fill="url(#rb-redDark)" stroke="#5a0a08" stroke-width="1"/>
+  <path d="M440 338 C480 332 516 336 542 352" stroke="#ff8a7a" stroke-width="1.2" opacity=".25"/>
+
+  <path d="M370 286 C430 230 500 208 558 214" fill="none" stroke="#2a2c32" stroke-width="9" stroke-linecap="round"/>
+  <path d="M370 286 C430 230 500 208 558 214" fill="none" stroke="#a0a6ae" stroke-width="2" stroke-linecap="round" opacity=".4"/>
+  <path d="M430 290 L556 248" stroke="#2a2c32" stroke-width="6" stroke-linecap="round"/>
+
+  <path d="M236 248 C250 214 292 198 338 206 C360 210 372 222 378 236 L372 262 C330 276 280 280 242 268 C228 260 226 250 236 248Z" fill="url(#rb-redBody)" stroke="#5a0a08" stroke-width="1.15"/>
+  <path d="M250 228 C280 210 324 210 350 224" stroke="#fff" stroke-width="2.4" opacity=".18" stroke-linecap="round"/>
+  <g filter="url(#rb-glowRed)">
+    <path d="M236 242 C240 236 246 236 250 242 C246 250 238 250 236 242Z" fill="#ff4a3a"/>
+    <ellipse cx="242" cy="242" rx="4" ry="2.4" fill="#ffd0c8"/>
+  </g>
+  <path d="M318 210 C346 196 372 200 390 216 L378 236 C360 224 340 220 322 228Z" fill="url(#rb-seatG)"/>
+
+  <path d="M372 214 C430 192 490 196 528 222 L516 244 C480 222 430 218 380 236Z" fill="url(#rb-seatG)" stroke="#0a0a0c" stroke-width=".8"/>
+  <path d="M400 214 C450 200 496 204 522 224" stroke="#555" stroke-width="1.2" opacity=".45"/>
+
+  <path d="M430 176 C468 146 528 142 574 172 C592 186 590 208 574 226 C546 252 492 264 444 254 C418 246 412 214 424 190 C426 184 428 179 430 176Z" fill="url(#rb-redBody)" stroke="#5a0a08" stroke-width="1.2"/>
+  <path d="M448 178 C486 156 536 154 566 178 C576 186 574 202 560 210 C528 196 484 188 450 200 C444 188 444 182 448 178Z" fill="url(#rb-shine)"/>
+  <circle cx="520" cy="198" r="8" fill="none" stroke="#ffc21a" stroke-width="1.4" opacity=".75"/>
+  <path d="M517 198 l3.2 4.2 6.6-8.6" stroke="#ffc21a" stroke-width="1.4" fill="none" stroke-linecap="round" opacity=".75"/>
+
+  <path d="M350 248 C400 270 460 274 520 248 L505 300 C450 322 390 320 340 300 Z" fill="#1a0a0a" opacity=".92"/>
+  <path d="M360 286 C410 304 470 304 515 286" stroke="#e5251b" stroke-width="1.2" opacity=".2"/>
+  <g id="rider">
+    <path d="M404 248 C416 286 404 318 382 342" fill="none" stroke="#12131a" stroke-width="15" stroke-linecap="round"/>
+    <path d="M368 336 C384 328 400 342 394 356 C384 368 360 366 358 352 C356 342 360 336 368 336Z" fill="#1a1c22" stroke="#050506" stroke-width=".8"/>
+    <path d="M362 350 h26" stroke="#ffc21a" stroke-width="1.15" opacity=".55"/>
+    <path d="M412 222 C438 236 444 272 422 304" fill="none" stroke="url(#rb-suit)" stroke-width="17" stroke-linecap="round"/>
+    <path d="M400 214 C428 200 470 204 492 222 C498 240 484 258 452 266 C420 272 396 258 392 236 C390 224 394 216 400 214Z" fill="url(#rb-suit)" stroke="#050506" stroke-width=".9"/>
+    <path d="M452 214 C484 184 528 170 558 180 C568 200 560 222 538 234 C506 250 470 252 444 238 C434 228 436 218 452 214Z" fill="url(#rb-suit)" stroke="#050506" stroke-width=".9"/>
+    <path d="M470 204 C508 186 542 180 564 188" fill="none" stroke="#e5251b" stroke-width="3.6" stroke-linecap="round"/>
+    <path d="M530 196 C552 206 572 220 590 236" fill="none" stroke="#101116" stroke-width="11" stroke-linecap="round"/>
+    <path d="M548 188 C568 196 586 208 604 222" fill="none" stroke="#1a1c22" stroke-width="12.5" stroke-linecap="round"/>
+    <ellipse cx="608" cy="224" rx="11" ry="7.5" fill="#1a1c22" stroke="#050506" stroke-width=".7" transform="rotate(22 608 224)"/>
+    <path d="M546 176 C558 170 568 176 566 190" fill="none" stroke="#2a2c32" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M526 96 C556 80 598 90 612 126 C622 154 608 178 578 186 C548 194 518 180 512 150 C506 120 512 102 526 96Z" fill="url(#rb-helmetG)" stroke="#050506" stroke-width="1.4"/>
+    <path d="M544 108 C566 96 590 104 600 122" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" opacity=".28"/>
+    <path d="M534 108 C560 92 594 102 610 126" fill="none" stroke="#e5251b" stroke-width="2.8" stroke-linecap="round"/>
+    <path d="M558 124 C580 112 606 120 614 144 C602 162 572 166 548 156 C544 144 548 130 558 124Z" fill="url(#rb-visorG)" stroke="#050506" stroke-width="1"/>
+    <path d="M568 128 C584 120 602 126 608 140" fill="none" stroke="#c8ecff" stroke-width="1.15" opacity=".4"/>
+  </g>
+
+  <g id="wheelFront" transform="translate(610 355)">
+    <g class="wheel-spin"><use href="#rb-wheelArt"/></g>
+    <g transform="rotate(16)">
+      <rect x="37" y="-13" width="20" height="26" rx="3.5" fill="#1a1c20" stroke="#666" stroke-width="1"/>
+      <rect x="41" y="-8" width="12" height="16" rx="2" fill="#c41b14"/>
+    </g>
+  </g>
+
+  <path d="M556 208 L622 350" stroke="#1a1c20" stroke-width="12" stroke-linecap="round"/>
+  <path d="M564 206 L630 350" stroke="url(#rb-forkG)" stroke-width="8.5" stroke-linecap="round"/>
+  <path d="M550 208 L614 350" stroke="url(#rb-forkG)" stroke-width="8.5" stroke-linecap="round"/>
+  <path d="M558 220 L618 338" stroke="#fff" stroke-width="1.3" opacity=".28" stroke-linecap="round"/>
+
+  <path d="M568 300 C592 274 636 274 662 304 C650 290 610 272 576 290Z" fill="url(#rb-redBody)" stroke="#5a0a08" stroke-width="1"/>
+
+  <path d="M560 196 C588 168 632 168 654 196 C662 214 648 230 622 236 C588 242 556 226 560 196Z" fill="url(#rb-redBody)" stroke="#5a0a08" stroke-width="1.15"/>
+  <path d="M580 184 C608 170 638 174 648 196" stroke="#fff" stroke-width="1.8" opacity=".2" stroke-linecap="round"/>
+  <g filter="url(#rb-glowAmber)">
+    <ellipse cx="632" cy="202" rx="17" ry="13" fill="#ffd56a"/>
+    <ellipse cx="634" cy="200" rx="10" ry="8" fill="#fff4c8"/>
+  </g>
+  <ellipse cx="632" cy="202" rx="17" ry="13" fill="none" stroke="#1a1a1c" stroke-width="1.2"/>
+
+  <rect x="546" y="196" width="30" height="11" rx="2" fill="url(#rb-metal)" stroke="#111" stroke-width=".6"/>
+  <path d="M568 200 C590 190 612 196 628 210" fill="none" stroke="#1a1c20" stroke-width="5.5" stroke-linecap="round"/>
+  <circle cx="628" cy="212" r="5" fill="#2a2c30" stroke="#888" stroke-width=".6"/>
+
+  <rect x="372" y="340" width="22" height="6" rx="2" fill="#9aa0a8"/>
+</svg>
+
+  </div>
+  <div class="ride-copy">
+   <div class="label fade">En el camino</div>
+   <h2 class="h2 fade">Piezas para cada kilómetro</h2>
+   <p class="fade">La moto avanza con el scroll: un ejemplo de la animación de la propuesta.</p>
+  </div>
+ </div>
 </section>
 
 <section class="cats dots sec-motion" id="categorias">
@@ -501,7 +796,7 @@ html.reduced .scroll-cue,html.reduced #cursor,html.reduced #progress{display:non
  gsap.registerPlugin(ScrollTrigger);
  if(reduce){document.documentElement.classList.add('reduced');return}
  document.documentElement.classList.add('js');
- if(window.Lenis){lenis=new Lenis({lerp:.09,smoothWheel:true});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(function(t){lenis.raf(t*1000)});gsap.ticker.lagSmoothing(0)}
+ if(window.Lenis){lenis=new Lenis({lerp:.09,smoothWheel:true});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(function(t){lenis.raf(t*1000)});gsap.ticker.lagSmoothing(0);window.__lenis=lenis}
  document.querySelectorAll('a[href^="#"]:not(.wa-link):not([data-cat])').forEach(function(a){a.addEventListener('click',function(e){var h=a.getAttribute('href');if(h.length>1&&document.querySelector(h)){e.preventDefault();go(h)}})});
 
  var vh=function(n){return function(){return innerHeight*n/100}};
@@ -598,6 +893,31 @@ html.reduced .scroll-cue,html.reduced #cursor,html.reduced #progress{display:non
  document.querySelectorAll('.menu a[href^="#"]').forEach(function(p){var t=document.querySelector(p.getAttribute('href'));if(!t)return;
   ScrollTrigger.create({trigger:t,start:'top 50%',end:'bottom 50%',onToggle:function(self){p.classList.toggle('is-on',self.isActive)}})});
 
+
+ /* road: moto travels, wheels spin, dashes and scenery scrub with scroll */
+ (function(){
+  var ride=document.querySelector('.ride');if(!ride)return;
+  var bike=document.getElementById('rideBike');
+  var dashes=document.getElementById('rideDashes');
+  var wheels=ride.querySelectorAll('.wheel-spin');
+  var mid=document.getElementById('rideMid');
+  var lamps=document.getElementById('rideLamps');
+  var near=document.getElementById('rideNear');
+  var far=ride.querySelector('.ride-far');
+  var wheelProxy={r:0};
+  var tl=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{
+    trigger:ride,start:'top top',end:'+=220%',pin:true,scrub:.75,anticipatePin:1,invalidateOnRefresh:true
+  }});
+  tl.fromTo(bike,{x:function(){return -Math.min(80,bike.offsetWidth*.12)}},{x:function(){return Math.max(innerWidth*.48,innerWidth-bike.offsetWidth*.7)},ease:'none'},0);
+  tl.to(bike,{keyframes:[{y:0},{y:-5},{y:0},{y:-7},{y:-2},{y:-6}],ease:'none',duration:1},0);
+  tl.to(wheelProxy,{r:1980,duration:1,onUpdate:function(){for(var i=0;i<wheels.length;i++)wheels[i].setAttribute('transform','rotate('+wheelProxy.r+')');}},0);
+  tl.fromTo(dashes,{x:0},{x:function(){return -dashes.offsetWidth*.42},ease:'none'},0);
+  if(mid)tl.fromTo(mid,{x:0},{x:function(){return -mid.scrollWidth*.35},ease:'none'},0);
+  if(lamps)tl.fromTo(lamps,{x:0},{x:function(){return -lamps.scrollWidth*.4},ease:'none'},0);
+  if(near)tl.fromTo(near,{x:0},{x:function(){return -near.scrollWidth*.48},ease:'none'},0);
+  if(far)tl.fromTo(far,{x:0},{x:function(){return -innerWidth*.1},ease:'none'},0);
+ })();
+
  /* interaction FX */
  FX.pop=function(el){gsap.fromTo(el,{scale:.82},{scale:1,duration:.5,ease:'back.out(3)'})};
  FX.shake=function(el){gsap.fromTo(el,{x:-12},{x:0,duration:.6,ease:'elastic.out(1.2,.25)'})};
@@ -614,14 +934,6 @@ html.reduced .scroll-cue,html.reduced #cursor,html.reduced #progress{display:non
 
  /* magnetic buttons + 3D-tilting photos/cards (mouse only) */
  mm.add('(hover:hover) and (pointer:fine)',function(){
-  document.documentElement.classList.add('has-cursor');
-  var cur=document.createElement('div');cur.id='cursor';document.body.appendChild(cur);
-  var cx=gsap.quickTo(cur,'left',{duration:.25,ease:'power3'}),cy=gsap.quickTo(cur,'top',{duration:.25,ease:'power3'});
-  addEventListener('pointermove',function(e){cx(e.clientX);cy(e.clientY);cur.classList.add('on')});
-  addEventListener('pointerleave',function(){cur.classList.remove('on')});
-  var grow='.btn,.chip,.add,.ib,.ty,.p,.logo,.fab';
-  document.addEventListener('pointerover',function(e){if(e.target.closest(grow))cur.classList.add('big')});
-  document.addEventListener('pointerout',function(e){if(e.target.closest(grow)&&(!e.relatedTarget||!e.relatedTarget.closest||!e.relatedTarget.closest(grow)))cur.classList.remove('big')});
   function magnetize(b){
    if(b.dataset.mag)return;b.dataset.mag='1';
    var mx=gsap.quickTo(b,'x',{duration:.4,ease:'power3'}),my=gsap.quickTo(b,'y',{duration:.4,ease:'power3'});
